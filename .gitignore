@@ -1,0 +1,6 @@
+.DS_Store
+packages
+.project
+.buildlog
+pubspec.lock
+autograph.dart.map
