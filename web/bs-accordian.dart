@@ -1,5 +1,5 @@
 import 'package:polymer/polymer.dart';
-import 'package:js/js.dart' as js;
+import 'dart:js' as js;
 
 /**
  * A Polymer click counter element.
@@ -29,9 +29,14 @@ class BSAccordian extends PolymerElement {
   }
 
   void collapseAction(action) {
+    // JS version
     // $(this.$.collapseTarget).collapse(action);
-    var collapsetarget = js.context.jQuery("#collapseTarget");
-    collapsetarget.collapse(action);
+
+    var target = $["collapseTarget"];
+    var jsnode = new js.JsObject.fromBrowserObject(target);
+    var jqobject = new js.JsObject(js.context["jQuery"], [jsnode]);
+
+    jqobject.callMethod("collapse", [action]);
   }
 }
 
